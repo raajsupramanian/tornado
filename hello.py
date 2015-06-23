@@ -13,6 +13,9 @@ class IndexHandler(tornado.web.RequestHandler):
         greeting = self.get_argument('greeting', 'Hello!!')
         self.write(greeting + ', friendly User! \n')
 
+    def write_error(self, status_code, **kwargs):
+        self.write("Ended in error with statuscode" + str(status_code))
+
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     app = tornado.web.Application(handlers=[(r"/", IndexHandler)])
